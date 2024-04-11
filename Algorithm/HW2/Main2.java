@@ -11,14 +11,14 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.ArrayList;
-
+ 
 /**
  * Built using CHelper plug-in
  * Actual solution is at the top
  */
 // Author: Betül Aydeğer
 public class Main2 {
-
+ 
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
@@ -28,7 +28,7 @@ public class Main2 {
         solver.solve(in, out);
         out.close();
     }
-
+ 
     // OPT(i,j)=max{OPT(i,j−1),max{p[j]−p[x]+OPT(i−1,x) for 1≤x<j}} x maxes j-1 de
     // hazır olsun
     // i alım satım sayısı, j gün sayısı
@@ -42,14 +42,14 @@ public class Main2 {
                     double max = p[j] + maxes[j - 1];
                     OPT[i][j] = Math.max(OPT[i][j - 1], max);
                     maxes[j] = Math.max(maxes[j - 1], -p[j] + OPT[i - 1][j]);
-
+ 
                 }
             }
-
+ 
             return OPT[k][p.length - 1] * 1000;
-
+ 
         }
-
+ 
         public void solve(InputReader in, PrintWriter out) {
             int n = in.nextInt();
             int k = in.nextInt();
@@ -59,16 +59,16 @@ public class Main2 {
             System.out.println(letsGetRich(p, k));
         }
     }
-
+ 
     static class InputReader {
         public BufferedReader reader;
         public StringTokenizer tokenizer;
-
+ 
         public InputReader(InputStream stream) {
             reader = new BufferedReader(new InputStreamReader(stream), 32768);
             tokenizer = null;
         }
-
+ 
         public String next() {
             while (tokenizer == null || !tokenizer.hasMoreTokens()) {
                 try {
@@ -79,18 +79,18 @@ public class Main2 {
             }
             return tokenizer.nextToken();
         }
-
+ 
         public int nextInt() {
             return Integer.parseInt(next());
         }
-
+ 
         public long nextLong() {
             return Long.parseLong(next());
         }
-
+ 
         public double nextDouble() {
             return Double.parseDouble(next());
         }
-
+ 
     }
 }
